@@ -1,0 +1,27 @@
+{
+  "name": "audio-spectrum",
+  "version": "1.0.0",
+  "description": "audio-spectrum for web audio",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "http-server": "^0.11.1"
+  },
+  "scripts": {
+    "start": "http-server docs -p 8080 -o http://localhost:8080/index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/okayumoka/audio-spectrum.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/okayumoka/audio-spectrum/issues"
+  },
+  "homepage": "https://github.com/okayumoka/audio-spectrum#readme"
+}
