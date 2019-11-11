@@ -6,12 +6,20 @@
   "directories": {
     "doc": "docs"
   },
-  "dependencies": {},
   "devDependencies": {
-    "http-server": "^0.11.1"
+    "copy-webpack-plugin": "^5.0.5",
+    "eslint": "^6.6.0",
+    "eslint-loader": "^3.0.2",
+    "prettier": "^1.19.1",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.2",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0",
+    "write-file-webpack-plugin": "^4.5.1"
   },
   "scripts": {
-    "start": "http-server docs -p 8080 -o http://localhost:8080/index.html",
+    "start": "webpack-dev-server --config webpack.config.dev.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

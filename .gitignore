@@ -59,5 +59,6 @@ typings/
 
 # next.js build output
 .next
-docs/audio.mp3
-docs/howler.js
+audio.mp3
+howler.js
+dist_dev
