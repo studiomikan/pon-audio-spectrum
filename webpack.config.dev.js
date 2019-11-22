@@ -8,7 +8,7 @@ const devServerPort = process.env.WEBPACK_DEV_SERVER_PORT || 8080;
 module.exports = {
   mode: "development",
   entry: {
-    'audio-spectrum': path.join(__dirname, 'src/audio-spectrum.ts')
+    'pon-audio-spectrum': path.join(__dirname, 'src/pon-audio-spectrum.ts')
   },
   output: {
     path: path.join(__dirname, 'dist_dev'),

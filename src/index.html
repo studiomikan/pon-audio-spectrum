@@ -11,7 +11,47 @@
   <button id="play">PLAY</button>
   <button id="stop">STOP</button>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.2/howler.js"></script>
-  <script src="audio-spectrum.js"></script>
+  <script src="pon-audio-spectrum.js"></script>
+  <script>
+const sound = new Howl({
+  src: "./audio.mp3",
+  autoplay: false
+});
+
+const pas = new PonAudioSpectrum(sound, 128);
+pas.init();
+
+const canvas = document.querySelector('#canvas');
+const canvasContext = canvas.getContext('2d');
+canvas.width = 450;
+canvas.height = 300;
+
+function render(spectrum) {
+  const barWidth = canvas.width / spectrum.length;
+  // const barHeight = 300
+  canvasContext.fillStyle = "#323232";
+  canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+  for (let i = 0; i < spectrum.length; i++) {
+    const barHeight = canvas.height * spectrum[i];
+    // canvasContext.fillRect(barWidth * i, canvas.height - barHeight, barWidth, canvas.height);
+    canvasContext.fillRect(barWidth * i, canvas.height - barHeight, barWidth, canvas.height);
+  }
+}
+
+setInterval(() => {
+  if (pas.isReady) {
+    render(pas.getSpectrumArray());
+  }
+}, 1 / 60);
+
+document.querySelector("#play").addEventListener('click', () => {
+  sound.play();
+});
+
+document.querySelector("#stop").addEventListener('click', () => {
+  sound.stop();
+});
+  </script>
 </body>
 
 </html>
