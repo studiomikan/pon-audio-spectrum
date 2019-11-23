@@ -7,7 +7,8 @@
 </head>
 
 <body>
-  <canvas id="canvas" width="400" height="300" style="border: solid 1px gray;"></canvas>
+  <!-- <canvas id="canvas" width="400" height="300" style="border: solid 1px gray;"></canvas> -->
+  <div id="target" style="border: solid 1px red"></div>
   <button id="play">PLAY</button>
   <button id="stop">STOP</button>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.2/howler.js"></script>
@@ -17,34 +18,20 @@ const sound = new Howl({
   src: "./audio.mp3",
   autoplay: false
 });
-
-const pas = new PonAudioSpectrum(sound, 128);
-pas.init();
-
-const canvas = document.querySelector('#canvas');
-const canvasContext = canvas.getContext('2d');
-canvas.width = 450;
-canvas.height = 300;
-
-function render(spectrum) {
-  const barWidth = canvas.width / spectrum.length;
-  // const barHeight = 300
-  canvasContext.fillStyle = "#323232";
-  canvasContext.clearRect(0, 0, canvas.width, canvas.height);
-  for (let i = 0; i < spectrum.length; i++) {
-    const barHeight = canvas.height * spectrum[i];
-    // canvasContext.fillRect(barWidth * i, canvas.height - barHeight, barWidth, canvas.height);
-    canvasContext.fillRect(barWidth * i, canvas.height - barHeight, barWidth, canvas.height);
-  }
-}
-
+const pas = new PonAudioSpectrum(PonAudioVisualiserType.Solid, {
+  // barWidth: 20,
+  // barHeight: 500,
+  // barColors: ["#0000FF", "#FF0000", "#00FF00"],
+  // barGradientStops: [0.0, 0.3, 1.0]
+});
+pas.setAudio(sound);
+document.querySelector("#target").appendChild(pas.canvas);
 setInterval(() => {
-  if (pas.isReady) {
-    render(pas.getSpectrumArray());
-  }
+  pas.draw();
 }, 1 / 60);
 
 document.querySelector("#play").addEventListener('click', () => {
+  sound.stop();
   sound.play();
 });
 

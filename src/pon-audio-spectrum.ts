@@ -1,59 +1,45 @@
-// import {Howl, Howler} from 'howler';
-import { Howler, Howl } from 'howler';
-console.log('init');
+import { Howl } from 'howler';
+import PonAudioAnalyser from './pon-audio-analyser';
+import {
+  IPonAudioVisualiser,
+  PonAudioVisualiserType,
+  PonAudioVisualiser
+} from './pon-audio-spectrum-canvas';
 
 export default class PonAudioSpectrum {
-  private howl: Howl;
-  private fftSize: number;
-  private ready: boolean = false;
-  private analyserNode: AnalyserNode | null = null;
-  private audioSource: AudioBufferSourceNode | null = null;
-  private spectrumArray: Uint8Array;
-  private spectrum: number[] = [];
+  private analyser: PonAudioAnalyser | null = null;
+  private visualiserType: PonAudioVisualiserType;
+  private visualiser: IPonAudioVisualiser | null = null;
 
-  public get isReady(): boolean {
-    return this.ready;
+  public get canvas(): HTMLCanvasElement | null {
+    return this.visualiser != null ? this.visualiser.canvas : null;
   }
 
-  constructor(howl: Howl, fftSize: number = 128) {
-    this.howl = howl;
-    this.fftSize = fftSize;
-    this.spectrumArray = new Uint8Array(fftSize / 2);
-  }
-
-  public init(): void {
-    const analyserNode = Howler.ctx.createAnalyser(); // 音分析ノード
-    this.analyserNode = analyserNode;
-    this.analyserNode.fftSize = this.fftSize;
-    this.howl.on('play', () => {
-      const audioSource: AudioBufferSourceNode = (this.howl as any)._sounds[0]._node.bufferSource;
-      this.audioSource = audioSource;
-      this.audioSource.connect(analyserNode);
-      this.ready = true;
-    });
+  constructor(type: PonAudioVisualiserType, options: any) {
+    this.visualiserType = type;
+    this.visualiser = PonAudioVisualiser.create(type, options);
   }
 
   public destroy(): void {
-    // TODO 解放
-    if (this.audioSource != null && this.analyserNode != null) {
-      this.audioSource.disconnect(this.analyserNode);
+    if (this.analyser != null) {
+      this.analyser.destroy();
     }
-    this.ready = false;
   }
 
-  public getSpectrumArray(): number[] {
-    const spectrumArray = this.spectrumArray;
-    const spectrum = this.spectrum;
-    let sp = 0;
-    if (this.ready && this.analyserNode != null) {
-      this.analyserNode.getByteFrequencyData(spectrumArray);
-      const min = Math.floor(spectrumArray.length * 0.1)
-      const max = Math.floor(spectrumArray.length * 0.8)
-      for (let i = min; i < max; i++) {
-        spectrum[sp++] = spectrumArray[i] / 256;
-      }
+  public setAudio(howl: Howl): void {
+    this.analyser = new PonAudioAnalyser(howl);
+  }
+
+  public get isReady(): boolean {
+    return this.analyser != null &&
+      this.analyser.isReady &&
+      this.visualiser != null;
+  }
+
+  public draw(): void {
+    if (this.analyser != null && this.visualiser != null && this.analyser.isReady) {
+      this.visualiser.draw(this.analyser.getSpectrumArray());
     }
-    return this.spectrum;
   }
 }
 
