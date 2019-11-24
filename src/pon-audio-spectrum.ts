@@ -1,23 +1,23 @@
 import { Howl } from 'howler';
 import PonAudioAnalyser from './pon-audio-analyser';
 import {
-  IPonAudioVisualiser,
-  PonAudioVisualiserType,
-  PonAudioVisualiser
+  IPonAudioVisualizer,
+  PonAudioVisualizerType,
+  PonAudioVisualizer
 } from './pon-audio-spectrum-canvas';
 
 export default class PonAudioSpectrum {
   private analyser: PonAudioAnalyser | null = null;
-  private visualiserType: PonAudioVisualiserType;
-  private visualiser: IPonAudioVisualiser | null = null;
+  private visualizerType: PonAudioVisualizerType;
+  private visualizer: IPonAudioVisualizer | null = null;
 
   public get canvas(): HTMLCanvasElement | null {
-    return this.visualiser != null ? this.visualiser.canvas : null;
+    return this.visualizer != null ? this.visualizer.canvas : null;
   }
 
-  constructor(type: PonAudioVisualiserType, options: any) {
-    this.visualiserType = type;
-    this.visualiser = PonAudioVisualiser.create(type, options);
+  constructor(type: PonAudioVisualizerType, options: any) {
+    this.visualizerType = type;
+    this.visualizer = PonAudioVisualizer.create(type, options);
   }
 
   public destroy(): void {
@@ -33,12 +33,12 @@ export default class PonAudioSpectrum {
   public get isReady(): boolean {
     return this.analyser != null &&
       this.analyser.isReady &&
-      this.visualiser != null;
+      this.visualizer != null;
   }
 
   public draw(): void {
-    if (this.analyser != null && this.visualiser != null && this.analyser.isReady) {
-      this.visualiser.draw(this.analyser.getSpectrumArray());
+    if (this.analyser != null && this.visualizer != null && this.analyser.isReady) {
+      this.visualizer.draw(this.analyser.getSpectrumArray());
     }
   }
 }

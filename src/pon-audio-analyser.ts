@@ -13,6 +13,12 @@ export default class PonAudioAnalyser {
     return this.ready;
   }
 
+  public get length(): number{
+    const min = Math.floor(this.spectrumArray.length * 0.1)
+    const max = Math.floor(this.spectrumArray.length * 0.8)
+    return max - min;
+  }
+
   constructor(howl: Howl, fftSize = 128) {
     this.howl = howl;
     this.fftSize = fftSize;

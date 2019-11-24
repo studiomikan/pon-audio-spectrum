@@ -8,22 +8,24 @@
 
 <body>
   <!-- <canvas id="canvas" width="400" height="300" style="border: solid 1px gray;"></canvas> -->
-  <div id="target" style="border: solid 1px red"></div>
+  <div id="target" style="border: solid 1px red; float: left"></div>
   <button id="play">PLAY</button>
   <button id="stop">STOP</button>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.2/howler.js"></script>
   <script src="pon-audio-spectrum.js"></script>
   <script>
 const sound = new Howl({
-  src: "./audio.mp3",
+  // src: "./audio.mp3",
+  src: "10. シルエット.mp3",
   autoplay: false
 });
-const pas = new PonAudioSpectrum(PonAudioVisualiserType.Solid, {
+const pas = new PonAudioSpectrum(PonAudioVisualizerType.Block, {
   // barWidth: 20,
   // barHeight: 500,
   // barColors: ["#0000FF", "#FF0000", "#00FF00"],
   // barGradientStops: [0.0, 0.3, 1.0]
 });
+console.log(pas)
 pas.setAudio(sound);
 document.querySelector("#target").appendChild(pas.canvas);
 setInterval(() => {
