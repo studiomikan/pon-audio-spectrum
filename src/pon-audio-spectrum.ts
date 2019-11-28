@@ -1,21 +1,19 @@
 import { Howl } from 'howler';
+import VisualizerType from './visualizer/type'
+import { IVisualizer } from './visualizer/base';
 import PonAudioAnalyser from './pon-audio-analyser';
-import {
-  IPonAudioVisualizer,
-  PonAudioVisualizerType,
-  PonAudioVisualizer
-} from './pon-audio-spectrum-canvas';
+import PonAudioVisualizer from './pon-audio-visualizer';
 
 export default class PonAudioSpectrum {
   private analyser: PonAudioAnalyser | null = null;
-  private visualizerType: PonAudioVisualizerType;
-  private visualizer: IPonAudioVisualizer | null = null;
+  private visualizerType: VisualizerType;
+  private visualizer: IVisualizer | null = null;
 
   public get canvas(): HTMLCanvasElement | null {
     return this.visualizer != null ? this.visualizer.canvas : null;
   }
 
-  constructor(type: PonAudioVisualizerType, options: any) {
+  constructor(type: VisualizerType, options: any) {
     this.visualizerType = type;
     this.visualizer = PonAudioVisualizer.create(type, options);
   }

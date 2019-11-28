@@ -30,15 +30,21 @@ export default class PonAudioAnalyser {
     this.howl.on('play', () => {
       const audioSource: AudioBufferSourceNode = (this.howl as any)._sounds[0]._node.bufferSource;
       this.audioSource = audioSource;
-      this.audioSource.connect(analyserNode);
+      console.log(this.audioSource.connect(analyserNode));
       this.ready = true;
     });
   }
 
   public destroy(): void {
     if (this.audioSource != null && this.analyserNode != null) {
-      this.audioSource.disconnect(this.analyserNode);
+      try {
+        this.audioSource.disconnect(this.analyserNode);
+      } catch (e) {
+        console.error(e);
+      }
     }
+    this.audioSource = null;
+    this.analyserNode = null;
     this.ready = false;
   }
 

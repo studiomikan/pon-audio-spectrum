@@ -1,46 +1,93 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
   <meta charset="UTF-8">
   <title>Audio Spectrum</title>
 </head>
-
 <body>
-  <!-- <canvas id="canvas" width="400" height="300" style="border: solid 1px gray;"></canvas> -->
-  <div id="target" style="border: solid 1px red; float: left"></div>
-  <button id="play">PLAY</button>
-  <button id="stop">STOP</button>
+  <div id="app">
+    <h1>{{ pageTitle }}</h1>
+    <div ref="canvasWrapper" id="target" style="border: solid 1px red;"></div>
+    <hr>
+    <div class="file-input-block">
+      <input id="audio_file" type="file" accept="audio/*" @change="onChangeFile">
+    </div>
+    <div class="audio-controller-block">
+      <button @click="play">PLAY</button>
+      <button @click="pause">PAUSE</button>
+      <button @click="stop">STOP</button>
+    </div>
+  </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.2/howler.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
   <script src="pon-audio-spectrum.js"></script>
   <script>
-const sound = new Howl({
-  // src: "./audio.mp3",
-  src: "10. シルエット.mp3",
-  autoplay: false
-});
-const pas = new PonAudioSpectrum(PonAudioVisualizerType.Block, {
-  // barWidth: 20,
-  // barHeight: 500,
-  // barColors: ["#0000FF", "#FF0000", "#00FF00"],
-  // barGradientStops: [0.0, 0.3, 1.0]
-});
-console.log(pas)
-pas.setAudio(sound);
-document.querySelector("#target").appendChild(pas.canvas);
-setInterval(() => {
-  pas.draw();
-}, 1 / 60);
-
-document.querySelector("#play").addEventListener('click', () => {
-  sound.stop();
-  sound.play();
-});
-
-document.querySelector("#stop").addEventListener('click', () => {
-  sound.stop();
+const app = new Vue({
+  el: "#app",
+  data() {
+    return {
+      pageTitle: "Audio spectrum visualizer",
+      audioSrc: "",
+      soundHowl: null,
+      pas: null,
+      drawTimer: null,
+    };
+  },
+  methods: {
+    async onChangeFile(e) {
+      console.log(e);
+      this.stop();
+      this.free();
+      const files = e.target.files;
+      if (files == null || files.length == 0) { return; }
+      this.audioSrc = await this.audioFileToDataUrl(files[0]);
+      this.soundHowl = new Howl({
+        src: this.audioSrc,
+        autoplay: false
+      });
+      this.pas = new PonAudioSpectrum(PonAudioVisualizerType.Solid, {});
+      this.pas.setAudio(this.soundHowl);
+      this.$refs.canvasWrapper.appendChild(this.pas.canvas);
+      this.drawTimer = window.setInterval(() => {
+        this.pas.draw();
+      }, 1 / 60);
+      this.soundHowl.play();
+    },
+    async audioFileToDataUrl(file) {
+      const reader = new FileReader();
+      const loadPromise = new Promise((resolve, reject) => {
+        reader.onload = (event) => {
+          resolve(event.target.result);
+        };
+      });
+      reader.readAsDataURL(file);
+      return loadPromise;
+    },
+    free() {
+      if (this.pas != null) {
+        // const wrapper = this.$refs.canvasWrapper;
+        // wrapper.canvasWrapper.removeChild(wrapper.firstChild);
+        this.$refs.canvasWrapper.removeChild(this.pas.canvas);
+        this.pas.destroy();
+      }
+    },
+    play() {
+      if (this.soundHowl == null) { return; }
+      if (this.soundHowl.playing()) {
+        this.stop();
+      }
+      this.soundHowl.play();
+    },
+    pause() {
+      if (this.soundHowl == null) { return; }
+      this.soundHowl.pause();
+    },
+    stop() {
+      if (this.soundHowl == null) { return; }
+      this.soundHowl.stop();
+    },
+  }
 });
   </script>
 </body>
-
 </html>
