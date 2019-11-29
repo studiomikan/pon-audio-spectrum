@@ -1,0 +1,45 @@
+{
+  "name": "audio-spectrum",
+  "version": "1.0.0",
+  "description": "audio-spectrum for web audio",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "devDependencies": {
+    "@types/howler": "^2.1.2",
+    "@typescript-eslint/eslint-plugin": "^2.8.0",
+    "@typescript-eslint/parser": "^2.8.0",
+    "copy-webpack-plugin": "^5.0.5",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-loader": "^3.0.2",
+    "eslint-plugin-prettier": "^3.1.1",
+    "howler": "^2.1.2",
+    "prettier": "^1.19.1",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.2",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0",
+    "write-file-webpack-plugin": "^4.5.1"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --config webpack.config.dev.js",
+    "build": "webpack --config webpack.config.prod.js",
+    "lint": "eslint ./src/**/*.ts",
+    "lint-fix": "eslint --fix ./src/**/*.ts",
+    "prettier": "prettier --write ./src/**/*.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/okayumoka/audio-spectrum.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/okayumoka/audio-spectrum/issues"
+  },
+  "homepage": "https://github.com/okayumoka/audio-spectrum#readme"
+}
