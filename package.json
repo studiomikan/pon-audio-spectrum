@@ -26,6 +26,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server --config webpack.config.dev.js",
+    "build": "webpack --config webpack.config.prod.js",
     "lint": "eslint ./src/**/*.ts",
     "lint-fix": "eslint --fix ./src/**/*.ts",
     "prettier": "prettier --write ./src/**/*.ts",

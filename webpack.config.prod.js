@@ -6,12 +6,12 @@ const devServerHost = process.env.WEBPACK_DEV_SERVER_HOST || '0.0.0.0';
 const devServerPort = process.env.WEBPACK_DEV_SERVER_PORT || 8080;
 
 module.exports = {
-  mode: "development",
+  mode: "production",
   entry: {
     'pon-audio-spectrum': path.join(__dirname, 'src/pon-audio-spectrum.ts')
   },
   output: {
-    path: path.join(__dirname, 'dist_dev'),
+    path: path.join(__dirname, 'dist'),
     filename: '[name].js'
   },
   module: {
@@ -21,28 +21,15 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions:['.ts', '.js', '.json']
+    extensions:['.ts']
   },
-  plugins: [
-    new CopyWebpackPlugin(
-      [ { from: '.', to: '.', ignore: '!*.html' }, ],
-      { context: path.join(__dirname, 'src') }
-    ),
-    new CopyWebpackPlugin(
-      [ { from: '.', to: '.', ignore: '!*.mp3' }, ],
-      { context: path.join(__dirname, 'src') }
-    ),
-    new CopyWebpackPlugin(
-      [ { from: '.', to: '.', ignore: '!*.ogg' }, ],
-      { context: path.join(__dirname, 'src') }
-    ),
-    new WriteFilePlugin(),
-  ],
+  // plugins: [
+  //   new WriteFilePlugin(),
+  // ],
   devServer: {
     host: devServerHost,
     port: devServerPort,
     disableHostCheck: true,
     contentBase: path.join(__dirname, 'dist_dev')
-  },
-  devtool: 'inline-source-map'
+  }
 }

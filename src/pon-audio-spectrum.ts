@@ -1,4 +1,3 @@
-import { Howl } from 'howler';
 import VisualizerType from './visualizer/type'
 import { IVisualizer } from './visualizer/base';
 import PonAudioAnalyser from './pon-audio-analyser';

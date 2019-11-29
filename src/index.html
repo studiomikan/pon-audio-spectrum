@@ -3,19 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <title>Audio Spectrum</title>
+  <style>
+    .row {
+      display: flex;
+    }
+    .left-area {
+      height: 400px;
+      margin-right: 20px;
+      border-right: solid 1px gray;
+      padding: 20px;
+    }
+    .file-input-block {
+      padding-bottom: 20px;
+    }
+    .audio-controller-block {
+      padding-bottom: 20px;
+    }
+  </style>
 </head>
 <body>
   <div id="app">
     <h1>{{ pageTitle }}</h1>
-    <div ref="canvasWrapper" id="target" style="border: solid 1px red;"></div>
-    <hr>
-    <div class="file-input-block">
-      <input id="audio_file" type="file" accept="audio/*" @change="onChangeFile">
-    </div>
-    <div class="audio-controller-block">
-      <button @click="play">PLAY</button>
-      <button @click="pause">PAUSE</button>
-      <button @click="stop">STOP</button>
+    <div class="row">
+      <div class="left-area">
+        <div class="file-input-block">
+          <input id="audio_file" type="file" accept="audio/*" @change="onChangeFile">
+        </div>
+        <div class="audio-controller-block">
+          <button @click="play">PLAY</button>
+          <button @click="pause">PAUSE</button>
+          <button @click="stop">STOP</button>
+        </div>
+      </div>
+      <div ref="canvasWrapper" id="target"></div>
     </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.2/howler.js"></script>

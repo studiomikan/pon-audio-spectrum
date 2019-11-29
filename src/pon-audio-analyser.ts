@@ -1,5 +1,3 @@
-import { Howler, Howl } from 'howler';
-
 export default class PonAudioAnalyser {
   private howl: Howl;
   private fftSize: number;
