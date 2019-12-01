@@ -1,8 +1,8 @@
 {
-  "name": "audio-spectrum",
+  "name": "pon-audio-spectrum",
   "version": "1.0.0",
-  "description": "audio-spectrum for web audio",
-  "main": "index.js",
+  "description": "audio spectrum for web audio (howler.js)",
+  "main": "dist/pon-audio-spectrum.js",
   "directories": {
     "doc": "docs"
   },
@@ -11,6 +11,7 @@
     "@typescript-eslint/eslint-plugin": "^2.8.0",
     "@typescript-eslint/parser": "^2.8.0",
     "copy-webpack-plugin": "^5.0.5",
+    "dts-bundle-webpack": "^1.0.2",
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.7.0",
     "eslint-loader": "^3.0.2",
@@ -35,12 +36,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/okayumoka/audio-spectrum.git"
+    "url": "git+https://github.com/okayumoka/pon-audio-spectrum.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/okayumoka/audio-spectrum/issues"
+    "url": "https://github.com/okayumoka/pon-audio-spectrum/issues"
   },
-  "homepage": "https://github.com/okayumoka/audio-spectrum#readme"
+  "homepage": "https://github.com/okayumoka/pon-audio-spectrum#readme"
 }

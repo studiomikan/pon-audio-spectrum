@@ -1,5 +1,6 @@
 const path = require('path')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const DtsBundleWebpack = require('dts-bundle-webpack')
 
 module.exports = {
   mode: "production",
@@ -19,6 +20,16 @@ module.exports = {
   resolve: {
     extensions: ['.ts']
   },
+  plugins: [
+    new DtsBundleWebpack({
+      name: 'pon-audio-spectrum',
+      main: 'src/pon-audio-spectrum.d.ts',
+      baseDir: 'dist',
+      out: 'pon-audio-spectrum.d.ts',
+      removeSource: true,
+      outputAsModuleFolder: true
+    })
+  ],
   optimization: {
     minimizer: [
       new UglifyJsPlugin({
