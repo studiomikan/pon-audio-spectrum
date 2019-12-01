@@ -1,9 +1,5 @@
 const path = require('path')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const WriteFilePlugin = require('write-file-webpack-plugin');
-
-const devServerHost = process.env.WEBPACK_DEV_SERVER_HOST || '0.0.0.0';
-const devServerPort = process.env.WEBPACK_DEV_SERVER_PORT || 8080;
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   mode: "production",
@@ -17,19 +13,21 @@ module.exports = {
   module: {
     rules: [
       { enforce: "pre", test: /\.ts$/, loader: "eslint-loader", exclude: /node_modules/ },
-      { test: /\.ts$/, loader:'ts-loader', exclude: /node_modules/ }
+      { test: /\.ts$/, loader: 'ts-loader', exclude: /node_modules/ }
     ]
   },
   resolve: {
-    extensions:['.ts']
+    extensions: ['.ts']
   },
-  // plugins: [
-  //   new WriteFilePlugin(),
-  // ],
-  devServer: {
-    host: devServerHost,
-    port: devServerPort,
-    disableHostCheck: true,
-    contentBase: path.join(__dirname, 'dist_dev')
-  }
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          output: {
+            'max_line_len': 255
+          }
+        },
+      }),
+    ],
+  },
 }
