@@ -65,7 +65,7 @@ const app = new Vue({
         src: this.audioSrc,
         autoplay: false
       });
-      this.pas = new PonAudioSpectrum(PonAudioVisualizerType.Solid, {});
+      this.pas = new PonAudioSpectrum(PonAudioSpectrum.VisualizerType.Solid, {});
       this.pas.setAudio(this.soundHowl);
       this.$refs.canvasWrapper.appendChild(this.pas.canvas);
       this.drawTimer = window.setInterval(() => {

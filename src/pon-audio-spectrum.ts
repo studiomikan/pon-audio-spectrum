@@ -4,6 +4,8 @@ import PonAudioAnalyser from './pon-audio-analyser';
 import PonAudioVisualizer from './pon-audio-visualizer';
 
 export default class PonAudioSpectrum {
+  public static VisualizerType = VisualizerType;
+
   private analyser: PonAudioAnalyser | null = null;
   private visualizerType: VisualizerType;
   private visualizer: IVisualizer | null = null;
