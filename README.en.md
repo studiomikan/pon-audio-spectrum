@@ -62,6 +62,7 @@ new PonAudioSpectrum(PonAudioSpectrum.VisualizerType.Block, {});
 
 | OPTION | TYPE | DEFAULT | DESCRIPTION |
 |--------|------|---------|-------------|
+| fftSize       | number | 128 | Fast Fourier Transform (FFT) size. Ref: [AnalyserNode.fftSize](https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/fftSize) |
 | barWidth      | number | 15 | Bar width |
 | barHeight     | number | 400 | Bar height |
 | margin        | number | 2 | Margin between lines. |
@@ -72,6 +73,7 @@ new PonAudioSpectrum(PonAudioSpectrum.VisualizerType.Block, {});
 
 | OPTION | TYPE | DEFAULT | DESCRIPTION |
 |--------|------|---------|-------------|
+| fftSize     | number | 128 | Fast Fourier Transform (FFT) size. Ref: [AnalyserNode.fftSize](https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/fftSize) |
 | blockWidth  | number | 15 | width of block |
 | blockHeight | number | 8  | height of block |
 | blockCount  | number | 40 | count of blocks |

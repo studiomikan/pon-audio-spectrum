@@ -62,6 +62,7 @@ new PonAudioSpectrum(PonAudioSpectrum.VisualizerType.Block, {});
 
 | OPTION | TYPE | DEFAULT | DESCRIPTION |
 |--------|------|---------|-------------|
+| fftSize       | number | 128 | 高速フーリエ変換(FFT) サイズ。参照: [AnalyserNode.fftSize](https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/fftSize) |
 | barWidth      | number | 15 | バーの幅 |
 | barHeight     | number | 400 | バーの高さ |
 | margin        | number | 2 | バーの間のマージン |
@@ -72,6 +73,7 @@ new PonAudioSpectrum(PonAudioSpectrum.VisualizerType.Block, {});
 
 | OPTION | TYPE | DEFAULT | DESCRIPTION |
 |--------|------|---------|-------------|
+| fftSize     | number | 128 | 高速フーリエ変換(FFT) サイズ。参照: [AnalyserNode.fftSize](https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/fftSize) |
 | blockWidth  | number | 15 | ブロックの幅 |
 | blockHeight | number | 8  | ブロックの高さ |
 | blockCount  | number | 40 | 1列分のブロックの数 |
