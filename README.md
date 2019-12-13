@@ -62,10 +62,10 @@ new PonAudioSpectrum(PonAudioSpectrum.VisualizerType.Block, {});
 
 | OPTION | TYPE | DEFAULT | DESCRIPTION |
 |--------|------|---------|-------------|
-| barWidth      | number | 15 |  |
-| barHeight     | number | 400 |  |
-| margin        | number | 2 | ライン間のマージン |
-| colors        | Array\<string\>| ["#1d2088", "#8edcff"] | ラインの色。複数の色を指定した場合はグラデーションになります。 |
+| barWidth      | number | 15 | バーの幅 |
+| barHeight     | number | 400 | バーの高さ |
+| margin        | number | 2 | バーの間のマージン |
+| colors        | Array\<string\>| ["#1d2088", "#8edcff"] | バーの色。複数の色を指定した場合はグラデーションになります。 |
 | gradientStops | Array\<number\> | null | グラデーションのときの Color step |
 
 ### Blockのオプション

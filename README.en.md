@@ -62,8 +62,8 @@ new PonAudioSpectrum(PonAudioSpectrum.VisualizerType.Block, {});
 
 | OPTION | TYPE | DEFAULT | DESCRIPTION |
 |--------|------|---------|-------------|
-| barWidth      | number | 15 |  |
-| barHeight     | number | 400 |  |
+| barWidth      | number | 15 | Bar width |
+| barHeight     | number | 400 | Bar height |
 | margin        | number | 2 | Margin between lines. |
 | colors        | Array\<string\>| ["#1d2088", "#8edcff"] | Line color. If multiple colors are specified, it be a gradation. |
 | gradientStops | Array\<number\> | null | Color stop of gradient. |
