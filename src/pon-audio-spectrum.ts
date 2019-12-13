@@ -7,6 +7,7 @@ export default class PonAudioSpectrum {
   public static VisualizerType = VisualizerType;
 
   private analyser: PonAudioAnalyser | null = null;
+  private fftSize: number = 128;
   private visualizerType: VisualizerType;
   private visualizer: IVisualizer | null = null;
 
@@ -17,6 +18,9 @@ export default class PonAudioSpectrum {
   constructor(type: VisualizerType, options: any) {
     this.visualizerType = type;
     this.visualizer = PonAudioVisualizer.create(type, options);
+    if (options.fftSize != null && !isNaN(+options.fftSize)) {
+      this.fftSize = +options.fftSize;
+    }
   }
 
   public destroy(): void {
@@ -26,7 +30,7 @@ export default class PonAudioSpectrum {
   }
 
   public setAudio(howl: Howl): void {
-    this.analyser = new PonAudioAnalyser(howl);
+    this.analyser = new PonAudioAnalyser(howl, this.fftSize);
   }
 
   public get isReady(): boolean {

@@ -3,6 +3,7 @@ import VisualizerType from './visualizer/type';
 export default class PonAudioSpectrum {
     static VisualizerType: typeof VisualizerType;
     private analyser;
+    private fftSize;
     private visualizerType;
     private visualizer;
     get canvas(): HTMLCanvasElement | null;
