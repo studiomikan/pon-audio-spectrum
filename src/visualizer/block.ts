@@ -24,8 +24,8 @@ export default class BlockVisualizer extends BaseVisualizer {
       blockCount: 40,
       marginh: 2,
       marginv: 2,
-      colors: ["#00FF00", "#FFFF00", "#FF0000"],
-      colorSteps: [20, 30, 40]
+      colors: ["#1d2088", "#0068b7", "#00a0e9", "#8edcff"],
+      colorSteps: [10, 20, 30, 40]
     });
     this.canvas.height = (this.blockHeight + this.marginv) * this.blockCount - this.marginv;
 

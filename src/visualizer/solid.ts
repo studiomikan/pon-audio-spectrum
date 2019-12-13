@@ -15,7 +15,7 @@ export default class SolidVisualizer extends BaseVisualizer {
     this.applyOptions(options, {
       barWidth: 15,
       barHeight: 400,
-      colors: ["#00FF00", "#FF0000"],
+      colors: ["#1d2088", "#8edcff"],
       margin: 2,
       gradientStops: null
     });
