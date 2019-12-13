@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+</head>
+<body>
+  <div id="container"></div>
+  <button id="play">Play</button>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.2/howler.js"></script>
+  <script src="pon-audio-spectrum.js"></script>
+  <script>
+// Create Howler audio.
+const howl = new Howl({ src: "audio.mp3", autoplay: false });
+
+// Create PonAudioSpectrum with options, and set audio.
+const options = {}
+const pas = new PonAudioSpectrum(PonAudioSpectrum.VisualizerType.Solid, options);
+pas.setAudio(howl);
+
+// Add PonAudioSpectrum's canvas to DOM, and start draw loop.
+document.getElementById("container").appendChild(pas.canvas);
+window.setInterval(() => {
+  pas.draw();
+}, 1 / 60);
+
+// Play audio
+document.getElementById("play").addEventListener("click", () => {
+  howl.play();
+})
+  </script>
+</body>
+</html>
