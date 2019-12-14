@@ -3,6 +3,8 @@
 
 Audio spectrum visualizer for web audio (with [howler.js](https://howlerjs.com/)).
 
+Demo: [https://okayumoka.github.io/pon-audio-spectrum/](https://okayumoka.github.io/pon-audio-spectrum/)
+
 ## Getting Started
 
 ```html
