@@ -3,7 +3,7 @@
 
 Web Audio ([howler.js](https://howlerjs.com/)) 向けのオーディオスペクトラムビジュアライザーです。
 
-デモ: [https://okayumoka.github.io/pon-audio-spectrum/](https://okayumoka.github.io/pon-audio-spectrum/)
+デモ: [https://studiomikan.github.io/pon-audio-spectrum/](https://studiomikan.github.io/pon-audio-spectrum/)
 
 ## はじめかた
 
